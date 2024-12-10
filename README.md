@@ -4,20 +4,20 @@ Check and listen to all page activity changes. Combines several different method
 
 The following are covered:
 
--   when the user changes tabs
--   when the user user changes applications (alt+tab)
--   when the user user minimizes browser
--   when the user opens dev tools
--   desktop browsers
--   mobile browsers
--   and more...
+- when the user changes tabs
+- when the user user changes applications (alt+tab)
+- when the user user minimizes browser
+- when the user opens dev tools
+- desktop browsers
+- mobile browsers
+- and more...
 
 **Warning:** this package sets the following callbacks on the global `window` object. Do not overwrite them or this package may stop functioning correctly:
 
--   `onpageshow`
--   `onpagehide`
--   `onfocus`
--   `onblur`
+- `onpageshow`
+- `onpagehide`
+- `onfocus`
+- `onblur`
 
 ## Installation
 

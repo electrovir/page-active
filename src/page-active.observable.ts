@@ -1,5 +1,5 @@
+import {check} from '@augment-vir/assert';
 import {Observable} from 'observavir';
-import {isStrictEqual} from 'run-time-assertions';
 
 /**
  * The observable that keeps track of page activation. This is not exported by the package as we
@@ -9,7 +9,7 @@ export class PageActiveObservable extends Observable<boolean> {
     constructor() {
         super({
             defaultValue: document.hidden,
-            equalityCheck: isStrictEqual,
+            equalityCheck: check.strictEquals,
         });
         globalThis.addEventListener('visibilitychange', (event) => this.updateVisibility(event));
         const visibilityHandler = (event: Event) => this.updateVisibility(event);

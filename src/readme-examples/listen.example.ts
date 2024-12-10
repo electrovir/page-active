@@ -1,4 +1,4 @@
-import {listenToPageActivation} from '..';
+import {listenToPageActivation} from '../index.js';
 
 listenToPageActivation(
     /**

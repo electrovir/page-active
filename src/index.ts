@@ -1,4 +1,4 @@
-import {PageActiveObservable} from './page-active.observable';
+import {PageActiveObservable} from './page-active.observable.js';
 
 const pageActiveObservable = new PageActiveObservable();
 

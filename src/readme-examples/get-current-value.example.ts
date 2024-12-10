@@ -1,3 +1,3 @@
-import {isPageActive} from '..';
+import {isPageActive} from '../index.js';
 
 console.info(isPageActive());

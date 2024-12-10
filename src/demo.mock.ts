@@ -1,3 +1,3 @@
-import {listenToPageActivation} from './index';
+import {listenToPageActivation} from './index.js';
 
 listenToPageActivation(true, (isActive) => console.info('is active:', isActive));
