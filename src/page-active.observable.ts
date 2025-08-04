@@ -1,6 +1,8 @@
 import {check} from '@augment-vir/assert';
 import {Observable} from 'observavir';
 
+const globalDocument = globalThis.document as typeof globalThis.document | undefined;
+
 /**
  * The observable that keeps track of page activation. This is not exported by the package as we
  * can't have multiple instances of it.
@@ -8,11 +10,17 @@ import {Observable} from 'observavir';
 export class PageActiveObservable extends Observable<boolean> {
     constructor() {
         super({
-            defaultValue: document.hidden,
+            defaultValue: !!globalDocument?.hidden,
             equalityCheck: check.strictEquals,
         });
-        globalThis.addEventListener('visibilitychange', (event) => this.updateVisibility(event));
-        const visibilityHandler = (event: Event) => this.updateVisibility(event);
+        if (!globalDocument) {
+            return;
+        }
+
+        globalThis.addEventListener('visibilitychange', (event) =>
+            this.updateVisibility(event, globalDocument),
+        );
+        const visibilityHandler = (event: Event) => this.updateVisibility(event, globalDocument);
 
         globalThis.onpageshow = visibilityHandler;
         globalThis.onpagehide = visibilityHandler;
@@ -20,7 +28,7 @@ export class PageActiveObservable extends Observable<boolean> {
         globalThis.onblur = visibilityHandler;
     }
 
-    private updateVisibility(event: Event) {
+    private updateVisibility(event: Event, document: Document) {
         const isChangeToActive = activeEvents.includes(event.type);
         const isChangeToInactive = inactiveEvents.includes(event.type);
 
