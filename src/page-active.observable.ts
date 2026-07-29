@@ -28,7 +28,7 @@ export class PageActiveObservable extends Observable<boolean> {
         globalThis.onblur = visibilityHandler;
     }
 
-    private updateVisibility(event: Event, document: Document) {
+    protected updateVisibility(event: Event, document: Document) {
         const isChangeToActive = activeEvents.includes(event.type);
         const isChangeToInactive = inactiveEvents.includes(event.type);
 
