@@ -10,22 +10,22 @@ const globalDocument = globalThis.document as typeof globalThis.document | undef
 export class PageActiveObservable extends Observable<boolean> {
     constructor() {
         super({
-            defaultValue: !!globalDocument?.hidden,
+            defaultValue: !!globalDocument && !globalDocument.hidden,
             equalityCheck: check.strictEquals,
         });
         if (!globalDocument) {
             return;
         }
 
-        globalThis.addEventListener('visibilitychange', (event) =>
-            this.updateVisibility(event, globalDocument),
-        );
         const visibilityHandler = (event: Event) => this.updateVisibility(event, globalDocument);
 
-        globalThis.onpageshow = visibilityHandler;
-        globalThis.onpagehide = visibilityHandler;
-        globalThis.onfocus = visibilityHandler;
-        globalThis.onblur = visibilityHandler;
+        [
+            'visibilitychange',
+            'pageshow',
+            'pagehide',
+            'focus',
+            'blur',
+        ].forEach((eventType) => globalThis.addEventListener(eventType, visibilityHandler));
     }
 
     protected updateVisibility(event: Event, document: Document) {

@@ -12,13 +12,6 @@ The following are covered:
 -   mobile browsers
 -   and more...
 
-**Warning:** this package sets the following callbacks on the global `window` object. Do not overwrite them or this package may stop functioning correctly:
-
--   `onpageshow`
--   `onpagehide`
--   `onfocus`
--   `onblur`
-
 ## Installation
 
 ```sh
