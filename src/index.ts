@@ -5,6 +5,7 @@ const pageActiveObservable = new PageActiveObservable();
 /**
  * Listen to changes in page activation.
  *
+ * @category Main
  * @returns A callback used to remove the listener.
  */
 export function listenToPageActivation(
@@ -16,7 +17,11 @@ export function listenToPageActivation(
     return pageActiveObservable.listen(fireImmediately, listener);
 }
 
-/** Check if the current page is currently active. */
+/**
+ * Check if the current page is currently active.
+ *
+ * @category Main
+ */
 export function isPageActive(): boolean {
     return pageActiveObservable.value;
 }

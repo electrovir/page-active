@@ -32,11 +32,8 @@ export class PageActiveObservable extends Observable<boolean> {
         const isChangeToActive = activeEvents.includes(event.type);
         const isChangeToInactive = inactiveEvents.includes(event.type);
 
-        const isActiveNow = isChangeToActive
-            ? true
-            : isChangeToInactive
-              ? false
-              : document.hasFocus() || !document.hidden;
+        const isActiveNow =
+            isChangeToActive || (!isChangeToInactive && (document.hasFocus() || !document.hidden));
 
         this.setValue(isActiveNow);
     }
